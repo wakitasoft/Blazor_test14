@@ -1,0 +1,65 @@
+﻿@using Blazor_test14.Client.Enum
+@using Blazor_test14.Client.Services
+@inject IArticleService ArticleService
+@inject IPublicArticleService PublicArticleService
+@inject NavigationManager NavHelper
+
+<EditForm Model="@article" OnValidSubmit="@(() => Mode == ArticleEditMode.New ? Post() : Put())">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label>タイトル</label>
+        <InputText class="form-control" @bind-Value="@article.Title" />
+    </div>
+    <div class="form-group">
+        <label>本文</label>
+        <InputTextArea class="form-control" @bind-Value="@article.Content" />
+    </div>
+    <button type="submit" class="btn btn-primary">登録</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public ArticleEditMode Mode { get; set; }
+    [Parameter]
+    public int Id { get; set; }
+
+
+    private Article article = new Article();
+
+    private async Task Post()
+    {
+        try
+        {
+            var newId = await PublicArticleService.Post(article);
+            NavHelper.NavigateTo($"articles/show/{newId}");
+        }
+        catch (AccessTokenNotAvailableException e)
+        {
+            e.Redirect();
+        }
+    }
+
+
+    private async Task Put()
+    {
+        try
+        {
+            await PublicArticleService.Put(Id, article);
+            NavHelper.NavigateTo($"articles/show/{Id}");
+        }
+        catch (AccessTokenNotAvailableException e)
+        {
+            e.Redirect();
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Mode == ArticleEditMode.Edit)
+        {
+            article = await PublicArticleService.Get(Id);
+        }
+    }
+
+}

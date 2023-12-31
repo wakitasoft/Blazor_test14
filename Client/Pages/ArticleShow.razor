@@ -1,0 +1,45 @@
+﻿@page "/articles/show/{id:int}"
+
+@using Blazor_test14.Client.Services
+@using Blazor_test14.Shared
+@inject IPublicArticleService ArticleService
+@inject NavigationManager NavHelper
+@inject AuthenticationStateProvider AuthProvider
+
+<button @onclick=@(() => NavHelper.NavigateTo($"articles/edit/{Id}"))
+        class="btn btn-secondary"style="margin-bottom: 20px;">編集</button>
+<button @onclick=@Delete
+        class="btn btn-danger" style="margin-bottom: 20px;">
+    削除
+</button>
+<br />
+
+<h2>@articleModel.Title</h2>
+<div>
+    @body
+</div>
+
+@code {
+        [Parameter]
+        public int Id { get; set; }
+    private Article articleModel = new Article();
+    private string body;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        articleModel = await ArticleService.Get(Id);
+        body = articleModel.Content;
+    }
+
+    private async Task Delete()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        if (!authState.User.Identity.IsAuthenticated)
+        {
+            NavHelper.NavigateTo($"authentication/login?returnUrl={Uri.EscapeDataString(NavHelper.Uri)}");
+            return;
+        }
+        await ArticleService.Delete(Id);
+        NavHelper.NavigateTo("/");
+    }
+}

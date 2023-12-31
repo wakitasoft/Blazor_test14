@@ -1,0 +1,12 @@
+﻿@page "/articles/edit/{id:int}"
+@using Microsoft.AspNetCore.Authorization
+@using Blazor_test14.Client.Enum
+@attribute [Authorize]
+
+<ArticleEditor Mode=ArticleEditMode.Edit Id=@Id />
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+}

@@ -1,0 +1,9 @@
+﻿@page "/articles/new"
+@using Microsoft.AspNetCore.Authorization
+@using Blazor_test14.Client.Enum
+@attribute [Authorize]
+
+<ArticleEditor Mode=ArticleEditMode.New />
+
+@code {
+}

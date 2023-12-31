@@ -1,0 +1,44 @@
+﻿@page "/"
+@using Blazor_test14.Client.Services
+@inject IPublicArticleService PublicArticleService
+
+@if (articles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>タイトル</th>
+                <th>本文</th>
+                <th>作成日時</th>
+                <th>更新日時</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in articles)
+            {
+                <tr>
+                    <td>@article.Id</td>
+                    <td><a href=@($"articles/show/{@article.Id}")>@article.Title</a></td>
+                    <td>@article.Content</td>
+                    <td>@article.CreateDate</td>
+                    <td>@article.UpdateDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code
+{
+    private List<Article> articles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await PublicArticleService.GetAllArticles();
+        articles = articles.OrderByDescending(x => x.CreateDate).ToList();
+    }
+}

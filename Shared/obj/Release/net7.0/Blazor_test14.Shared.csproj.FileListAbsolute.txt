@@ -1,0 +1,13 @@
+C:\Users\twaki\Blazor_test14\Shared\bin\Release\net7.0\Blazor_test14.Shared.deps.json
+C:\Users\twaki\Blazor_test14\Shared\bin\Release\net7.0\Blazor_test14.Shared.runtimeconfig.json
+C:\Users\twaki\Blazor_test14\Shared\bin\Release\net7.0\Blazor_test14.Shared.dll
+C:\Users\twaki\Blazor_test14\Shared\bin\Release\net7.0\Blazor_test14.Shared.pdb
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.AssemblyInfoInputs.cache
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.AssemblyInfo.cs
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.csproj.CoreCompileInputs.cache
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.dll
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\refint\Blazor_test14.Shared.dll
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.pdb
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\Blazor_test14.Shared.genruntimeconfig.cache
+C:\Users\twaki\Blazor_test14\Shared\obj\Release\net7.0\ref\Blazor_test14.Shared.dll
